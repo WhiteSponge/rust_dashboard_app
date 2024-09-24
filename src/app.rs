@@ -34,6 +34,7 @@ pub fn App() -> impl IntoView {
         // content for this welcome page
         <Router>
             <main>
+                <Body class="bg-gray-900 overflow-x-hide" />
                 <Routes>
                     <Route path="/" view=move || {
                         view! {
