@@ -3,17 +3,12 @@ use crate::app::models::Person;
 use charts_rs::{BarChart, Color, Series, THEME_DARK};
 use leptos::*;
 use num_format::{Buffer, Locale};
-use std::rc::Rc;
 
 #[component]
 pub fn DashboardChart(persons_data: Vec<Person>) -> impl IntoView {
-    //create a reference counting pointer to our actual persons data so
-    //Rust doesn't need to create/clone copies of the actual data every
-    //time
-    let retrieved_persons_data = Rc::new(persons_data.clone());
-
     // for counting the total number of team members
-    let team_count: String = retrieved_persons_data.len().to_string();
+    // we are using persons_data here only, so we can take ownership of it
+    let team_count: String = persons_data.len().to_string();
 
     // for calculating and adding the total cost for all the team members
     let mut total_cost: i32 = 0;
