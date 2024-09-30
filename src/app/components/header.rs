@@ -40,7 +40,7 @@ pub fn Header() -> impl IntoView {
 }
 
 fn get_style_from_url<'a>(url: &'a str, match_url: &'a str) -> &'static str {
-    if url() == match_url {
+    if url == match_url {
         INPUT_STYLE_SELECTED
     } else {
         INPUT_STYLE
