@@ -28,10 +28,10 @@ pub fn Header() -> impl IntoView {
 
         <div class="flex mx-auto align-center items-center w-full h-12 pt-8 px-20 top-0 fixed">
             <nav class="flex flex-row w-full max-w-[52rem] h-12">
-                <div class={move || get_style_from_url(&current_path, "/")}>
+                <div class={move || get_style_from_url(current_path().as_str(), "/")}>
                     <A href="/">"Dashboard"</A>
                 </div>
-                <div class={move || get_style_from_url(&current_path, "/team")}>
+                <div class={move || get_style_from_url(current_path().as_str(), "/team")}>
                     <A href="/team">"Team"</A>
                 </div>
             </nav>
@@ -39,10 +39,10 @@ pub fn Header() -> impl IntoView {
     }
 }
 
-fn get_style_from_url<'a, 'b>(url: &'a ReadSignal<String>, match_url: &'a str) -> &'b str {
-    if url() == match_url {
-        return INPUT_STYLE_SELECTED;
+fn get_style_from_url<'a, 'b>(url: &'a str, match_url: &'a str) -> &'b str {
+    if url == match_url {
+        INPUT_STYLE_SELECTED
+    } else {
+        INPUT_STYLE
     }
-
-    INPUT_STYLE
 }
