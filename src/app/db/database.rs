@@ -104,7 +104,10 @@ cfg_if::cfg_if! {
                                 Err(_) => Err(PersonError::PersonUpdateFailure)
                             }
                         },
-                        None => Err(PersonError::PersonUpdateFailure)
+                        None => {
+                            let _ = DB.invalidate().await;
+                            Err(PersonError::PersonUpdateFailure)
+                        }
                     }
                 },
                 Err(_) => {
